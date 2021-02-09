@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lab2_Exc2</title>
+</head>
+
+<body>
+	<h1>About Me</h1>
+ <ul>
+	 <li>Name: <span id="name"></span></li>
+	 <li>Index: <span id="index"></span></li>
+	 <li>Hometown: <span id="hometown"></span></li>
+ </ul> 
+	
+	<script>	
+		document.body.style.fontFamily = "Arial";
+		document.getElementById("name").innerHTML = "<p> Luka <p>";
+		document.getElementById("index").innerHTML = "<p> 191572 <p>";
+		document.getElementById("hometown").innerHTML = "<p> Skopje <p>";
+		var x = document.getElementsByTagName("LI");
+		
+		for(var i = 0; i < x.length; i++) {
+			x[i].style.backgroundColor = "red";
+		}
+	</script>
+	
+	
+</body>
+</html>

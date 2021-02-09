@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lab2_Exc4</title>
+</head>
+
+<body>
+	
+	<input type="text" id="firstNumber">
+	<input type="text" id="secondNumber">
+	<input type="text" id="thirdNumber">
+	<input type="text" id="fourthNumber">
+	
+	<button id="addButton">Add</button>
+	
+	<input type="text" id="firstSum">
+	<input type="text" id="secondSum">
+	
+	
+	<script>
+		function addIntegers(a, b) {
+			
+			if(!isNaN(a) && !isNaN(b)) {
+				
+				var x = parseInt(a);
+				var y = parseInt(b);
+				
+				var z = x + y;
+				return z;
+			}
+		}
+		
+		document.getElementById("addButton").onclick = function() {
+			
+			var a = document.getElementById("firstNumber").value;
+			var b = document.getElementById("secondNumber").value;
+			var c = document.getElementById("thirdNumber").value;
+			var d = document.getElementById("fourthNumber").value;
+			
+			var sum1 = addIntegers(a, c);
+			var sum2 = addIntegers(b, d);
+			
+			document.getElementById("firstSum").value = sum1;
+			document.getElementById("secondSum").value = sum2;
+		}
+	</script>
+	
+	
+	
+</body>
+</html>

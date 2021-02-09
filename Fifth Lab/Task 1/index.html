@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<head>
+</head>
+	
+	
+<body>
+	<h1>Калкулатор</h1>
+	<div>
+		<div style="text-align:left; float:left">
+			<p>а<input id="a" style="width:15px"/>b 
+				<input id="b" style="width:15px"/></p>
+			<p>
+				<input id="plus" type="radio" name="oper" checked>a+b 
+				<input id="minus" type="radio" name="oper">a-b 
+				<input id="mnoz" type="radio" name="oper">a*b 
+				<input id="del" type="radio" name="oper">a/b 
+				<br>
+				<input id="sin" type="radio" name="oper">sin(a)
+				<input id="cos" type="radio" name="oper">cos(a)
+				<input id="tg" type="radio" name="oper">tg(a)
+				<br>
+				<input id="cel" type="radio" name="oper">[a]
+				<input id="stepen" type="radio" name="oper">a<sup>b</sup>
+				<input id="koren" type="radio" name="oper">&radic;
+				<span style="text-decoration: overline">a</span>
+			</p>
+			<button id="submitButton">Пресметај</button>
+			<p id="rezultat"></p>
+		</div>
+	</div>
+	<br/>
+	
+	<script>
+	
+		document.getElementById("submitButton").onclick = function calculate() {
+			var result = 0;
+			var a = parseInt(document.getElementById("a").value);
+			var b = parseInt(document.getElementById("b").value);
+		
+			if(document.getElementById("plus").checked) {
+				result = a + b;
+			}
+			else if(document.getElementById("minus").checked) {
+				result = a - b;
+				console.log("Test");
+			}
+			else if(document.getElementById("mnoz").checked) {
+				result = a * b;
+			}
+			else if(document.getElementById("del").checked) {
+				result = a / b;
+			}
+			else if(document.getElementById("sin").checked) {
+				result = Math.sin(a);
+			}
+			else if(document.getElementById("cos").checked) {
+				result = Math.cos(a);
+			}
+			else if(document.getElementById("tg").checked) {
+				result = Math.tan(a);
+			}
+			else if(document.getElementById("cel").checked) {
+
+			}
+			else if(document.getElementById("stepen").checked) {
+				result = Math.pow(a, b);
+			}
+			else if(document.getElementById("koren").checked) {
+				result = Math.sqrt(a);
+			}
+			document.getElementById("rezultat").innerHTML = result;
+		}
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Grade Form</title>
+</head>
+
+<body>
+	
+	<h1>Student Grading Form</h1>
+	
+	<div id="form">
+	
+		<p>Name:</p>
+		<input type="text" id="studentName">
+		<br>
+		<p>Surname:</p>
+		<input type="text" id="studentSurname">
+		<br>
+		<p>Index:</p>
+		<input type="text" id="studentIndex">
+		<br>
+		<p>Subject:</p>
+		<input type="text" id="studentSubject">
+		<br>
+		<p>Grade:</p>
+		<select id="studentGrade" name="grade">
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
+		</select>
+		<br>
+		<button id="submitButton">Submit</button>
+	</div>
+	
+	<table id="studentTable">
+		<tr>
+			<thead>
+				<td>Name</td>
+				<td>Surname</td>
+				<td>Index</td>
+				<td>Subject</td>
+				<td>Grade</td>
+			</thead>
+		</tr>
+		<tbody id="tableBody">
+		
+		
+		</tbody>
+	</table>
+	
+	
+	<script>
+		
+		function Student(firstName, lastName, indeks, sub, grades) {
+		this.name = firstName;
+		this.surname = lastName;
+		this.index = indeks;
+		this.subject = sub;
+		this.grade = grades;
+	}
+	
+
+		document.getElementById("submitButton").onclick = function submit() {
+			
+			
+
+			let name = document.getElementById("studentName").value;
+			
+			let surname = document.getElementById("studentSurname").value;
+			
+			let index = document.getElementById("studentIndex").value;
+			
+			let subject = document.getElementById("studentSubject").value;
+			
+			let grade = document.getElementById("studentGrade").value;
+			
+			let newStudent = new Student(name, surname, index, subject, grade);
+			
+			
+			var newRow = document.createElement("tr");
+			
+			newRow.innerHTML = `
+				<td>${name}</td>
+				<td>${surname}</td>
+				<td>${index}</td>
+				<td>${subject}</td>
+				<td>${grade}</td>
+			`;
+			
+			document.getElementById("tableBody").appendChild(newRow);
+		}
+
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

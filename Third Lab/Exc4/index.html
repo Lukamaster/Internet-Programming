@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>bookClass</title>
+</head>
+
+<body>
+	
+	<script>
+	
+		function Book(title, author, read) {
+			
+			this.name = title;
+			this.auth = author;
+			this.r = read;	
+		}
+		
+		let theGreatGatsby = new Book("The Great Gatsby", "F Scott Fitzgerald", true);
+		
+		let richDadPoorDad = new Book("Rich Dad Poor Dad", "Robert Kiyosaki", true);
+		
+		let toKillaMockingBird = new Book("To Kill a Mockingbird", "Harper Lee", false);
+		
+		let arr = [theGreatGatsby, richDadPoorDad, toKillaMockingBird];
+		
+		for(let i = 0; i < arr.length; i++) {
+			
+			if(arr[i].r == true) {
+				console.log("You have already read " + arr[i].name + " by " + arr[i].auth);
+			}
+			else {
+				console.log("You still need to read " + arr[i].name + " by " + arr[i].auth);
+			}
+		}
+	
+	
+	</script>
+		
+	
+	
+	
+	
+	
+</body>
+</html>

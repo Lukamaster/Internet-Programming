@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display Elements</title>
+</head>
+
+<body>
+	<div id="form">
+	
+		<p>Items:</p>
+		<input type="text" id="items">
+		<p>Type:</p>
+		<select id="buttonType">
+			<option>Radio Button</option>
+			<option>Checkbox</option>
+		</select>
+		<button id="submitButton">Submit</button>
+	</div>
+	
+	<div id="userOptions">
+	
+	</div>
+	
+	
+	<script>
+		
+		document.getElementById("submitButton").onclick = function submit() {
+			
+			var newItems = document.getElementById("items").value;
+			newItems.trim();
+		
+			var noOfWords = newItems.split(",").length;
+			
+			var typeofInput = document.getElementById("buttonType").value;
+			
+			if(typeofInput == "Radio Button") {
+				
+				for(let i = 0; i < noOfWords; i++) {
+					
+					var x = document.createElement("input");
+					x.setAttribute("type", "radio");
+					x.setAttribute("id", newItems.split(",")[i]);
+					x.setAttribute("name", newItems.split(",")[i]);
+					document.getElementById("userOptions").appendChild(x);
+					
+					var y = document.createElement("label");
+					y.setAttribute("for", newItems.split(",")[i]);
+					y.innerHTML = newItems.split(",")[i];
+					document.getElementById("userOptions").appendChild(y);
+					
+					
+				}
+			}
+			else {
+				for(let i = 0; i < noOfWords; i++) {
+					
+					var x = document.createElement("input");
+					x.setAttribute("type", "checkbox");
+					x.setAttribute("id", newItems.split(",")[i]);
+					x.setAttribute("name", newItems.split(",")[i]);
+					document.getElementById("userOptions").appendChild(x);
+					
+					
+					var y = document.createElement("label");
+					y.setAttribute("for", newItems.split(",")[i]);
+					y.innerHTML = newItems.split(",")[i];
+					document.getElementById("userOptions").appendChild(y);
+					
+				}
+			}	
+		}
+		
+	</script>
+</body>
+</html>

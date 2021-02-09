@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lab3_Exc1</title>
+</head>
+
+<body>
+	<p> Duplicate Element Remover </p>
+	<button id="button1">Activate Function</button>
+	
+	<script> 
+	
+		var x = ["Red", "Blue", "Green", "White", "White", "Green", "Green", "Red"];
+		
+		document.getElementById("button1").onclick = removeDuplicate(x);
+		
+		function removeDuplicate(a) {
+			for(var i = 0; i < a.length; i++) {
+				for(var j = i+1; j < a.length; j++) {
+					if(a[j] == a[i]) {
+						a.splice(j);
+					}
+				}		
+			}
+			document.writeln("<p>" + a.join(" ") + "</p>");
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Background Change</title>
+</head>
+
+<body>
+	
+	<div id="mainDiv">
+		<h1>Background Changer</h1>
+		<label for="color">Color</label>
+		<input type="radio" id="color" name="style">
+		<label for="image">Image</label>
+		<input type="radio" id="image" name="style">
+		<p>Value:</p>
+		<input type="text" id="inp">
+		<button id="submitButton">Change</button>
+	
+	
+	
+	
+	
+	</div>
+	
+	
+	<script>
+	
+		document.getElementById("submitButton").onclick = function changeBackground() {
+			
+			let y = document.getElementById("inp").value;
+			
+			if(document.getElementById("color").checked) {
+			
+				document.getElementById("mainDiv").style.backgroundColor = y;
+			}
+			else if(document.getElementById("image").checked) {
+				
+				document.getElementById("mainDiv").style.backgroundImage = `url(${y})`;
+			}
+			else {
+				alert("No Option Selected");
+			}
+		}
+
+	</script>
+	
+
+</body>
+</html>

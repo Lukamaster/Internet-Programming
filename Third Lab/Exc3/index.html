@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cylinder</title>
+</head>
+
+<body>
+	<script>
+	
+		function Cylinder(r, h) {
+			
+			this.radius = r;
+			this.height = h;
+			
+			this.volume = function() {
+				let v = (3.141 * (this.radius*this.radius) * this.height);
+				console.log(v + " m3");
+			}
+		}
+		
+		var myCylinder = new Cylinder(10, 5);
+		
+		myCylinder.volume();
+		
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

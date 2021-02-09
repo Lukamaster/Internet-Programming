@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+</head>
+<body>
+	<div>
+		<div style="text-align:right; float:left">
+			<label id="obid">Обиди 0</label>
+			<p>Погодок: <input id="guess" style="width:150px"/></p>
+			<button id="submitButton">Погоди</button>
+			<button id="resetButton">Од почеток</button>
+		</div>
+	</div>
+	<br/>
+	<div id="prikaz" style="clear: both">
+	</div>
+	
+	<script>
+	
+		var randInt = newRandonInt();
+		let noOfAttempts = 0;
+		var attemptsLeft = 10;
+		
+		// Random Number Generator from 1000-9999
+		function newRandonInt() {
+			
+			var x = Math.random()
+			Math.floor(x);
+			return Math.floor(x * (9999-1000) + 1000);
+		}
+		
+		// Function to calculate how many digits are a match and how many are in place
+		function calculateGuess(x) {
+			
+			var random = randInt;
+			var guess = x;
+			var digitCount = 0;
+			var placeCount = 0;
+			sRandom = random.toString();
+			gRandom = guess.toString();
+			
+			for(var i = 0; i < 4; i++) {
+				if(gRandom.indexOf(sRandom[i]) > - 1) {
+					digitCount++;
+					if(gRandom[i] == sRandom[i]) {
+						placeCount++;
+					}
+				}
+			}
+			// Prints the above info to the output div
+			var newRow = document.createElement("p");
+			newRow.innerHTML = `Ima ${digitCount}, Na Mesto ${placeCount} : ${gRandom}`;
+			document.getElementById("prikaz").appendChild(newRow);
+			
+		}
+		
+		// Submit Button Function
+		document.getElementById("submitButton").onclick = function submit() {
+			
+			var changeBG = document.getElementById("prikaz");
+			
+			// Checks if the user has attempts left
+			if(attemptsLeft > 0) {
+				var guess = document.getElementById("guess").value;
+				parseInt(guess);
+
+				noOfAttempts++;
+				attemptsLeft--;
+				document.getElementById("obid").innerHTML = `Обиди ${noOfAttempts}`;
+
+				calculateGuess(guess);
+				
+				// Checks if the user guessed the exact number
+				if(guess == randInt) {
+					attemptsLeft = 0;
+					changeBG.style.backgroundColor = "green";
+					var winMessage = document.createElement("p");
+					winMessage.innerHTML = "<p>Congratulations, you guessed the correct number.</p>"
+					changeBG.appendChild(winMessageMessage);
+					}
+			}
+			// Called when the user is out of attemps
+			else {
+				changeBG.style.backgroundColor = "red";
+				var lostMessage = document.createElement("p");
+				lostMessage.innerHTML = "<p>Sorry you are out of attempts.</p>"
+				changeBG.appendChild(lostMessage);
+			}
+			
+		}
+		
+		// Reset Function
+		document.getElementById("resetButton").onclick = function reset() {
+			
+			document.getElementById("prikaz").innerHTML = "";
+			document.getElementById("guess").value = "";
+			document.getElementById("obid").innerHTML = "Обиди 0";
+			document.getElementById("prikaz").style.backgroundColor = "white";
+			randInt = newRandonInt();
+			noOfAttempts = 0;
+			attemptsLeft = 10;
+		}
+		
+	</script>
+	
+</body>
+</html>
