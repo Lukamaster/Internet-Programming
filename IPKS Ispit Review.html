@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IPKS Ispit Review</title>
+	<script src="jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	
+	<div id="form">
+		<h1>System za Smetki</h1>
+		<label>Name: </label>
+		<input type="text" id="userName">
+		<label>Surname: </label>
+		<input type="text" id="userSurname">
+		<label>ID: </label>
+		<input type="text" id="userID">
+		<label>Promet: </label>
+		<input type="text" id="userPromet">
+		<button id="submitButton">Submit</button>
+	</div>
+	<div id="userSmetki">
+		<h1>Vneseni Smetki</h1>
+	</div>
+	<div id="plateniSmetki">
+		<h1>Plateni Smetki</h1>
+	</div>
+
+	<script>
+		
+		// Already existing JSON string
+		userData =  '[{"ime":"Nikola","prezime":"Nikolovski","id":"NNN1asdfgh","promet":"1000"},{"ime":"Nikolina","prezime":"Nikolovska","id":"NNN2asdfgh","promet":"3000"}]';
+	
+		userData = JSON.parse(userData);
+		
+		// Function that creates a new bill
+		function addNewBill(name, surname, userID, promet) {
+			
+			var billID = Math.floor(Math.random() * (99999-10000 + 1) + 10000);
+			
+			var bill = $('<div>' + 
+						'<ul class="userInfo">' +  
+							'<li>' + "Bill ID:" + billID + '</li>' + 
+							'<li>' + "Name: " + name + '</li>' + 
+							'<li>' + "Surname: " + surname + '</li>' + 
+							'<li>' + "ID: " + userID + '</li>' + 
+							'<li>' + "Promet: " + promet + '</li>' +
+						'</ul>' +
+						'<button class="payButton">' + "Pay" + '</button>' +
+						'</div>');
+			
+			bill.attr("id", userID);
+			bill.css({width: "200px", height: "200px"});
+			
+			if(promet < 5000) {
+				bill.css("background-color", "green");
+			}
+			else {
+				bill.css("background-color", "red");
+			}
+			bill.appendTo('#userSmetki');
+			
+			// jQuery function that moves payed bills to new section and removes button
+			$('.payButton').click(function() {
+				var x = $(this).parent();
+				x.fadeOut(function() {
+					x.appendTo("#plateniSmetki");
+					x.fadeIn();
+			});
+				$(this).remove();
+			});
+		}
+		
+		// Function that adds balance to an existing user if they attempt to create a new bill
+		function addToCurrentUser(userID, promet) {
+			var x = $('#' + userID).find('.userInfo').find('li').last();
+			var y = x.html().toString().substring(8);
+			var sum = parseInt(y) + parseInt(promet);
+			x.html("Promet: " + sum);
+		}
+		
+		
+		// Adds the curernt bills from the JSON string to the list of bills
+		for(var i = 0; i < userData.length; i++) {
+			
+			addNewBill(userData[i].ime, userData[i].prezime, userData[i].id, userData[i].promet);
+		}
+		
+		
+		var currentUsers = [];
+		var userCount = 0;
+		// Adds a new bill from the data the user submits in the fields
+		var x = $("#submitButton").click(function() {
+			
+			var name = $("#userName").val();
+			var surname = $("#userSurname").val();
+			var userID = $("#userID").val();
+			var promet = $("#userPromet").val();
+			
+			// Regex values that check for capital letters and numbers
+			var reg1 = /[A-Z]/g;
+			var reg2 = /[0-9]/g;
+			var flag = true;
+			
+			// Checks if ID matches correct Parameters
+			if(userID.length == 10) {
+				
+				if(userID.search(reg1) >= 3 && userID.search(reg2) >= 1) {
+					
+					for(let i = 0; i < currentUsers.length; i++) {
+						
+						if(currentUsers[i] == userID) {
+							addToCurrentUser(userID, promet);
+							flag = false;
+							break;
+						}
+					}
+					
+					if(flag) {
+						addNewBill(name, surname, userID, promet);
+						currentUsers[userCount] = userID;
+						userCount++;
+					}
+					else {
+						alert("Amount added to existing bill");
+					}
+				}
+				else {
+					alert("ID Must contain at least 3 capital letters and one number");
+				}
+			}
+			else {
+				alert("ID Must be 10 Characters long");
+			}	
+		});
+	
+	</script>
+	
+</body>
+</html>
